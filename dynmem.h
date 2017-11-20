@@ -28,8 +28,10 @@
 			along with Dynmem. If not, see http://www.gnu.org/licenses/.
  
 */
-#ifndef __H_DYNMEM__
-#define __H_DYNMEM__
+#ifndef DYNMEM_H
+#define DYNMEM_H
+
+#include <string.h>
 
 // type that represents a heap allocated dynamic memory buffer
 // -> all LOGICAL ACCESSING functions (get/set/resize/push/pop) MUST ENSURE ENOUGH MEMORY is allocated

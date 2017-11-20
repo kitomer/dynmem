@@ -31,6 +31,10 @@
 
 #include "dynmem.h"
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 void hexdump( void * addr, size_t len )
 {
 	int i;
