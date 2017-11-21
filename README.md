@@ -17,8 +17,6 @@ on how it is accessed.
 
 ## Getting Started
 
-This short code snippet demostrates what can be done using dynmem:
-
 ```c
 dynmem d;
 dynmem_init( &d, 1 );
@@ -33,6 +31,8 @@ dynmem_get( &d, 0, 1, (void **)&strp );
 printf("[0] '%.1s'\n", strp);
 printf("[1,2] '%.2s'\n", strp+1);
 ```
+
+The basic concept behind dynmem is that it contains as many elements (fixed sized, size given via `dynmem_init()`) as have been set (usuallty using `dynmem_set()` or `dynmem_push()`). The memory allocated internally is automatically scaled up and down. There are functions for setting and getting one or more elements as well as managing the number of contained elements as well as the internal reserved memory - see [dynmem.h](dynmem.h) for details on all functions.
 
 ### Dependencies / Prerequisites
 
