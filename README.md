@@ -96,7 +96,7 @@ who participated in this project.
 ## License
 
 This project is licensed under the GNU General Public License (version 3 or later) -
-see the [LICENSE.md](LICENSE.md) file for details
+see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
