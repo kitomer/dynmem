@@ -1,6 +1,8 @@
 # dynmem
 
 [![Build Status](https://travis-ci.org/kitomer/dynmem.svg)](https://travis-ci.org/kitomer/dynmem)
+[![Inline docs](http://inch-ci.org/github/kitomer/dynmem.svg?branch=master)](http://inch-ci.org/github/kitomer/dynmem)
+[![HitCount](http://hits.dwyl.io/kitomer/dynmem.svg)](http://hits.dwyl.io/kitomer/dynmem)
 
 This small function collection allows for the management of a dynamic array
 of fixed sized byte sequence elements. It autoscales (reallocates) depending
@@ -79,7 +81,9 @@ add the following lines to the end  of your /etc/bashrc file (if not already pre
 
 ## Contributing
 
-Coming soon.
+[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/kitomer/dynmem/issues)
+
+A dedicated contributing document is coming soon.
 
 ## Versioning
 
