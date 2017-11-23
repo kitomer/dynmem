@@ -4,15 +4,14 @@
 [![Inline docs](http://inch-ci.org/github/kitomer/dynmem.svg?branch=master)](http://inch-ci.org/github/kitomer/dynmem)
 [![HitCount](http://hits.dwyl.io/kitomer/dynmem.svg)](http://hits.dwyl.io/kitomer/dynmem)
 
-This small function collection allows for the management of a dynamic array
-of fixed sized byte sequence elements. It autoscales (reallocates) depending
-on how it is accessed.
+Functions for managing dynamic arrays of fixed sized elements. It autoscales (reallocates) the actual memory used depending
+on how the array is accessed.
 
 ## Features
 
 - manage dynamic arrays with fixed sized elements
 - no need for calling malloc/realloc/... since dynmem does it for you
-- scales the actually needed memory automatically up and down as needed/written:
+- scales the needed memory automatically up and down as needed/written:
   - scales up in increments of power of 2
   - scales down to the some sensible value that will probably not bee exceeded in the near future (based on previous accesses which are recorded internally)
 
