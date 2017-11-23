@@ -69,7 +69,7 @@ add the following lines to the end  of your /etc/bashrc file (if not already pre
 ## Used by
 
 * [ull](https://www.github.com/kitomer/ull) - C unrolled linked list library/implementation
-* [tmpl](https://www.github.com/kitomer/tmpl) - C template library/implementation
+* [tmplvar](https://www.github.com/kitomer/tmplvar) - C template library/implementation
 * [bsbs](https://www.github.com/kitomer/bsbs) - C byte buffer library/implementation
 * [elmdb](https://www.github.com/kitomer/elmdb) - extended LMDB C library/implementation
 * [dbl](https://www.github.com/kitomer/dbl) - C library/implementation for managing inverted indices based on LMDB/elmdb
