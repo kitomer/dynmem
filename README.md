@@ -10,10 +10,11 @@ on how it is accessed.
 
 ## Features
 
-- manage unlimited dynamic memory buffers with fixed-sized elements (byte sequences)
+- manage dynamic arrays with fixed sized elements
 - no need for calling malloc/realloc/... since dynmem does it for you
-- dynmem scales the actual needed memory up as needed (in increments of power of 2)
-- dynmem records what range of buffer elements is accessed and when a buffer is reset, the memory is scaled down to a sensible value in order to avoid future reallocations
+- scales the actually needed memory automatically up and down as needed/written:
+  - scales up in increments of power of 2
+  - scales down to the some sensible value that will probably not bee exceeded in the near future (based on previous accesses which are recorded internally)
 
 ## Getting Started
 
@@ -23,7 +24,6 @@ dynmem_init( &d, 1 );
 char str[ 256 ] = "abc";
 char * strp = 0;
 
-//dynmem_resize( &d, 42 );
 dynmem_set( &d, 0, 3, (void *)str );
 dynmem_debug( &d );
 
@@ -32,7 +32,7 @@ printf("[0] '%.1s'\n", strp);
 printf("[1,2] '%.2s'\n", strp+1);
 ```
 
-The basic concept behind dynmem is that it contains as many elements (fixed sized, size given via `dynmem_init()`) as have been set (usuallty using `dynmem_set()` or `dynmem_push()`). The memory allocated internally is automatically scaled up and down. There are functions for setting and getting one or more elements as well as managing the number of contained elements as well as the internal reserved memory - see [dynmem.h](dynmem.h) for details on all functions.
+The basic concept behind dynmem is that it contains as many elements (fixed sized, size given via `dynmem_init()`) as have been set (usually using `dynmem_set()` or `dynmem_push()`). The memory allocated internally is automatically scaled up and down. There are functions for setting and getting one or more elements as well as managing the number of contained elements as well as the internal reserved memory - see [dynmem.h](dynmem.h) for details on all functions.
 
 ### Dependencies / Prerequisites
 
