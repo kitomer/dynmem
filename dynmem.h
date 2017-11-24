@@ -40,6 +40,9 @@
 typedef struct _dynmem dynmem;
 
 #define DYNMEM_GENERAL_MIN_ELEMENTS 32
+#ifndef DYNMEM_USE_MULTITHREADED_GLOBAL_BYTE_STORAGE
+	#define DYNMEM_USE_MULTITHREADED_GLOBAL_BYTE_STORAGE 1
+#endif
 
 extern int dynmem_init( dynmem * mem, size_t elemsize );
 extern void dynmem_debug( dynmem * mem );
@@ -53,12 +56,4 @@ extern int dynmem_pop( dynmem * mem, void * * bytes );
 extern size_t dynmem_length( dynmem * mem );
 extern size_t dynmem_get_as_string( dynmem * mem, char * * str );
 
-// The following functions manage single and pairs of dynmem-managed byte sequences
-
-#define BS(bytes,length) ((bs){(char*)(bytes),(size_t)(length)})
-#define BSBS(bytes1,length1,bytes2,length2) ((bsbs){{(char*)(bytes1),(size_t)(length1)},{(char*)(bytes2),(size_t)(length2)}})
-
-extern char * bytes_heap( char * bytes, size_t length );
-extern bs * bs_heap( char * bytes, size_t length );
-extern bsbs * bsbs_heap( char * bytes1, size_t length1, char * bytes2, size_t length2 );
 #endif
