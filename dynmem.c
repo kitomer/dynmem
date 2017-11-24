@@ -35,6 +35,15 @@
 #include <stdio.h>
 #include <string.h>
 
+struct _dynmem {
+  unsigned char * bytes;
+  size_t elemsize;
+  size_t reserved; // number of elements max storable
+  size_t length; // max number of elements used/accessed (arbitrary)
+  double avg_length_accessed; // average max number of elements accessed through dynmem_set() or dynmem_get()
+  size_t num_accesses; // number of accesses (used to determine if downsizing is allowed)
+};
+
 void hexdump( void * addr, size_t len )
 {
 	int i;
@@ -314,3 +323,62 @@ size_t dynmem_get_as_string( dynmem * mem, char * * str )
     return 0;
   }
 }
+
+//////////////////////// bsbs_*
+
+char * bytes_heap( char * bytes, size_t length )
+{
+	// get some memory to hold the kv value
+	size_t start = dynmem_length( &g_bs_mem );
+	char * p = 0;
+	if( dynmem_set( &g_bytes_mem, start, length, bytes ) && 
+			dynmem_get( &g_bytes_mem, start, length, (void**)&p ) && p ) {
+		return p;
+	}
+	return 0;
+}
+
+bs * bs_heap( char * bytes, size_t length )
+{
+	bs seq = { 0 }; // just for call to dynmem_set()
+	bs * seqp = 0;
+
+	// get some memory to hold the kv value
+	size_t start = dynmem_length( &g_bs_mem );
+	if( dynmem_set( &g_bs_mem, start, 1, &seq ) && 
+			dynmem_get( &g_bs_mem, start, 1, (void**)&seqp ) && seqp ) {
+
+		char * cpy = bytes_heap( bytes, length );
+		if( cpy ) {
+			seqp->bytes =  cpy;
+			seqp->length = length;
+			return seqp;
+		}
+	}
+	return 0;
+}
+
+bsbs * bsbs_heap( char * bytes1, size_t length1, char * bytes2, size_t length2 )
+{
+	bsbs pair = { { 0 }, { 0 } }; // just for call to dynmem_set()
+	bsbs * pairp = 0;
+
+	// get some memory to hold the kv value
+	size_t start = dynmem_length( &g_bsbs_mem );
+	if( dynmem_set( &g_bsbs_mem, start, 1, &pair ) && 
+			dynmem_get( &g_bsbs_mem, start, 1, (void**)&pairp ) && pairp ) {
+
+		char * cpy1 = bytes_heap( bytes1, length1 );
+		char * cpy2 = ( cpy1 ? bytes_heap( bytes2, length2 ) : 0 );
+		if( cpy1 && cpy2 ) {
+		
+			pairp->a.bytes = cpy1;
+			pairp->a.length = length1;
+			pairp->b.bytes = cpy2;
+			pairp->b.length = length2;
+			return pairp;
+		}
+	}
+	return 0;
+}
+

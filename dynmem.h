@@ -37,15 +37,7 @@
 // -> all LOGICAL ACCESSING functions (get/set/resize/push/pop) MUST ENSURE ENOUGH MEMORY is allocated
 // -> INTERNALLY the length_accessed length is used to determine how to scale the memory up/down AS SEEN FIT
 //    MAYBE: only ever scale up! special function dynmem_crop() to scale DOWN to a reasonable memory amount if requested!  
-typedef struct _dynmem {
-  unsigned char * bytes;
-  size_t elemsize;
-  size_t reserved; // number of elements max storable
-  size_t length; // max number of elements used/accessed (arbitrary)
-  double avg_length_accessed; // average max number of elements accessed through dynmem_set() or dynmem_get()
-  size_t num_accesses; // number of accesses (used to determine if downsizing is allowed)
-}
-dynmem;
+typedef struct _dynmem dynmem;
 
 #define DYNMEM_GENERAL_MIN_ELEMENTS 32
 
@@ -61,4 +53,12 @@ extern int dynmem_pop( dynmem * mem, void * * bytes );
 extern size_t dynmem_length( dynmem * mem );
 extern size_t dynmem_get_as_string( dynmem * mem, char * * str );
 
+// The following functions manage single and pairs of dynmem-managed byte sequences
+
+#define BS(bytes,length) ((bs){(char*)(bytes),(size_t)(length)})
+#define BSBS(bytes1,length1,bytes2,length2) ((bsbs){{(char*)(bytes1),(size_t)(length1)},{(char*)(bytes2),(size_t)(length2)}})
+
+extern char * bytes_heap( char * bytes, size_t length );
+extern bs * bs_heap( char * bytes, size_t length );
+extern bsbs * bsbs_heap( char * bytes1, size_t length1, char * bytes2, size_t length2 );
 #endif
