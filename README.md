@@ -68,8 +68,7 @@ add the following lines to the end  of your /etc/bashrc file (if not already pre
 ## Used by
 
 * [ull](https://www.github.com/kitomer/ull) - C unrolled linked list library/implementation
-* [bsbs](https://www.github.com/kitomer/bsbs) - C byte buffer library/implementation
-* [elmdb](https://www.github.com/kitomer/elmdb) - extended LMDB C library/implementation
+* [sitedude](https://www.github.com/kitomer/sitedude) - C web application server with fulltext search
 
 ## Built With
 
