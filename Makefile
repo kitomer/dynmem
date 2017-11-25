@@ -12,6 +12,5 @@ install: lib
 	ln -s /usr/local/lib/libdynmem.so.1 /usr/local/lib/libdynmem.so
 
 clean:
-	rm dynmem.o
-	rm libdynmem.so.0.1.0
+	rm -f dynmem.o libdynmem.so.0.1.0
 	
