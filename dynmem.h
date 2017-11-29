@@ -64,5 +64,6 @@ extern int dynmem_push( dynmem * mem, void * inbytes, void * * outbytes );
 extern int dynmem_pop( dynmem * mem, void * * bytes );
 extern size_t dynmem_length( dynmem * mem );
 extern size_t dynmem_get_as_string( dynmem * mem, char * * str );
+extern void dynmem_hexdump( void * addr, size_t len );
 
 #endif

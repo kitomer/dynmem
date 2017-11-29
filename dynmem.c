@@ -35,7 +35,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void hexdump( void * addr, size_t len )
+void dynmem_hexdump( void * addr, size_t len )
 {
 	int i;
 	unsigned char buff[17];
@@ -143,7 +143,7 @@ void dynmem_debug( dynmem * mem )
 		double kb = ( (double)numbytes / (double)1024.0 );
 		printf("<dynmem bytes %s, elemsize %ld, length %ld, avg_length_accessed %.4lf, num_accesses %ld, reserved %ld (%.4lfKB, %ldB)\n",
 			(mem->bytes == NULL ? "NULL" : "DEF"), mem->elemsize, mem->length, mem->avg_length_accessed, mem->num_accesses, mem->reserved, kb, numbytes );
-		hexdump( mem->bytes, mem->elemsize * mem->length );
+		dynmem_hexdump( mem->bytes, mem->elemsize * mem->length );
 		printf(">\n");
 	}
 	else {
